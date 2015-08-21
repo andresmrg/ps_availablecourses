@@ -30,12 +30,11 @@ class block_ps_availablecourses extends block_list {
         //on each course
         foreach($courses as $key => $value) {
         	//build url and built array of items
-        	$url = new moodle_url('/blocks/ps_availablecourses/managecourses.php');
-        	$this->content->items[] = html_writer::link($url, $value->course_name);
-        	//$value->course_name
-        	//print_object($value);
+        	$this->content->items[] = '<div style="text-align:center"><a href="#">'.$value->course_name.'</a>';
+
         }
-        $this->content->footer = html_writer::link('/blocks/ps_availablecourses/allcourses.php', 'See full list', array('id' => 'psfootercenter'));
+        $this->content->footer = '<div style="text-align:center"><a href="#">See full list</a></div>';
+        //$this->content->footer = html_writer::link('/blocks/ps_availablecourses/allcourses.php', 'See full list', array('id' => 'psfootercenter'));
         //$this->content->footer = html_writer::link('/blocks/ps_availablecourses/allcourses.php', 'See full list');
 
 	    return $this->content;
