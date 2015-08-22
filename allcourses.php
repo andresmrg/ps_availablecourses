@@ -27,7 +27,7 @@ foreach($courses as $key => $value) {
 		<div style="border:solid 1px #CCC; padding: 20px; margin-bottom: 10px;">
 			<strong>Course Title:</strong> '.$value->course_name.'<br><br>
 			<p>'.$value->course_description.'</p>
-			<a class="ps_request_button" href="#">Request Course</a>
+			<a class="ps_request_button" href="'.$CFG->wwwroot.'/blocks/ps_selfstudy/requestcourse.php?id='.$value->id.'">Request Course</a>
 		</div>');
 }
 echo $OUTPUT->footer();
