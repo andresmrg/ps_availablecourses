@@ -10,6 +10,8 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/blocks/ps_availablecourses/allcourses.php');
 $PAGE->set_pagelayout('standard');
+$PAGE->set_title('Available Courses');
+$PAGE->set_heading('Available Courses');
 
 /*
 1. get records from db
@@ -23,11 +25,18 @@ $courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=
 $site = get_site();
 echo $OUTPUT->header();
 foreach($courses as $key => $value) {
+
+	if($value->course_type == 0) {
+		$requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/requestcourse.php?id=".$value->id;
+	} else {
+		$requesturl = "courses.php";
+	}
+
 	echo $OUTPUT->box('
 		<div style="border:solid 1px #CCC; padding: 20px; margin-bottom: 10px;">
 			<strong>Course Title:</strong> '.$value->course_name.'<br><br>
 			<p>'.$value->course_description.'</p>
-			<a class="ps_request_button" href="'.$CFG->wwwroot.'/blocks/ps_selfstudy/requestcourse.php?id='.$value->id.'">Request Course</a>
+			<a class="ps_request_button" href="'.$requesturl.'">Request Course</a>
 		</div>');
 }
 echo $OUTPUT->footer();
