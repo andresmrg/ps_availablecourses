@@ -18,7 +18,7 @@ $PAGE->set_pagelayout('standard');
 */
 
 //get courses only copies type
-$courses = $DB->get_records('block_ps_selfstudy_course', array ('course_type'=>'0','course_status'=>'0'), $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+$courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=>'0'), $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
 $site = get_site();
 echo $OUTPUT->header();
