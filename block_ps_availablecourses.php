@@ -1,7 +1,5 @@
 <?php
 
-require_once('../../config.php');
-
 class block_ps_availablecourses extends block_list {
 
 	public function init() {
