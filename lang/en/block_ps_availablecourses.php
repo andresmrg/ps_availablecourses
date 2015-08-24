@@ -12,3 +12,6 @@ $string['field_coursename'] = 'Course Title';
 $string['field_description'] = 'Course Description';
 $string['field_checkbox'] = 'Create course link type';
 $string['field_checkbox_hide'] = 'Hide course';
+$string['viewall'] = '<br><div style="text-align:center">See full list</div>';
+$string['intro'] = '<p>In this section you can find the list of all self-study courses. Click on the course for more information or click on See full list to display all courses.</p>';
+

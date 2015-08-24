@@ -21,17 +21,24 @@ class block_ps_availablecourses extends block_list {
         $this->content = new stdClass;
         $this->content->items = array();
         $this->content->icons = array();
-        
+
         //introduction
-        $this->content->items[] = "<p>In this section you can find the list of all self-study courses. Click on the course for more information or click on See full list to display all courses.</p>";
+        $this->content->items[] = get_string('intro', 'block_ps_availablecourses');
         
         //get courses only copies type
-        $courses = $DB->get_records('block_ps_selfstudy_course', array ('course_type'=>'0','course_status'=>'0'), $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=>'0'), $sort='', $fields='course_code,course_name', $limitfrom=0, $limitnum=0);
         foreach($courses as $key => $value) {
         	//build the list of courses
-        	$this->content->items[] = '<div><a href="#">'.$value->course_name.'</a></div>';
+        	//$long = "$value->course_code - $value->course_name";
+        	$str = substr("$value->course_code - $value->course_name", 0, 55);
+        	if (strlen($str) > 50)
+   			$str = substr($str, 0, 50) . '...';
+
+        	$this->content->items[] = '<div><a href="#">'.$str.'</a></div>';
+        	//$this->content->items[] = '<div><a href="#">'.$str.'</a></div>';
         }
-        $this->content->footer = '<br><div style="text-align:center"><a href="blocks/ps_availablecourses/allcourses.php">See full list</a></div>';
+        $url1 = new moodle_url('/blocks/ps_availablecourses/allcourses.php');
+        $this->content->footer = html_writer::link($url1, get_string('viewall', 'block_ps_availablecourses'));
 
 	    return $this->content;
 	}   // Here's the closing bracket for the class definition
