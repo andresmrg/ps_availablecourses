@@ -29,7 +29,7 @@ foreach($courses as $key => $value) {
 	if($value->course_type == 0) {
 		$requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/requestcourse.php?id=".$value->id;
 	} else {
-		$requesturl = "courses.php";
+		$requesturl = "#";
 	}
 
 	echo $OUTPUT->box('
