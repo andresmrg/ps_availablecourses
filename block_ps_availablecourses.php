@@ -22,17 +22,17 @@ class block_ps_availablecourses extends block_list {
         $this->content->items[] = get_string('intro', 'block_ps_availablecourses');
         
         //get courses only copies type
-        $courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=>'0'), $sort='', $fields='course_code,course_name', $limitfrom=0, $limitnum=0);
-        foreach($courses as $key => $value) {
+        //$courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=>'0'), $sort='', $fields='course_code,course_name', $limitfrom=0, $limitnum=0);
+        //foreach($courses as $key => $value) {
         	//build the list of courses
         	//$long = "$value->course_code - $value->course_name";
-        	$str = substr("$value->course_code - $value->course_name", 0, 55);
-        	if (strlen($str) > 50)
-   			$str = substr($str, 0, 50) . '...';
+        	//$str = substr("$value->course_code - $value->course_name", 0, 55);
+        	//if (strlen($str) > 50)
+   			//$str = substr($str, 0, 50) . '...';
 
-        	$this->content->items[] = '<div><a href="#">'.$str.'</a></div>';
         	//$this->content->items[] = '<div><a href="#">'.$str.'</a></div>';
-        }
+        	//$this->content->items[] = '<div><a href="#">'.$str.'</a></div>';
+        //}
         $url1 = new moodle_url('/blocks/ps_availablecourses/allcourses.php');
         $this->content->footer = html_writer::link($url1, get_string('viewall', 'block_ps_availablecourses'));
 

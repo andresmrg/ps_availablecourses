@@ -1,46 +1,31 @@
 <?php
-
-require_once('../../config.php');
-//require_once('course_form.php');
-//require_once('allcourses_form.php');
-
-global $DB, $OUTPUT, $PAGE;
+/**
+ * Simple file test_custom.php to drop into root of Moodle installation.
+ * This is an example of using a sql_table class to format data.
+ */
+require "../../config.php";
+require "$CFG->libdir/tablelib.php";
+require "allcourses_table.php";
+global $OUTPUT, $PAGE;
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url('/blocks/ps_availablecourses/allcourses.php');
+$PAGE->set_url('/blocks/ps_selfstudy/allcourses.php');
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title('Available Courses');
-$PAGE->set_heading('Available Courses');
+$table = new allcourses_table('uniqueid');
 
-/*
-1. get records from db
-2. display records in the box, title, description and a button
-
-*/
-
-//get courses only copies type
-$courses = $DB->get_records('block_ps_selfstudy_course', array ('course_status'=>'0'), $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+// Define headers
+$PAGE->set_title('Available courses');
+$PAGE->set_heading('Available courses');
 
 $site = get_site();
-echo $OUTPUT->header();
-foreach($courses as $key => $value) {
-
-	if($value->course_type == 0) {
-		$requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/requestcourse.php?id=".$value->id;
-	} else {
-		$requesturl = "#";
-	}
-
-	echo $OUTPUT->box('
-		<div style="border:solid 1px #CCC; padding: 20px; margin-bottom: 10px;">
-			<strong>Course Title:</strong> '.$value->course_name.'<br><br>
-			<p>'.$value->course_description.'</p>
-			<a class="ps_request_button" href="'.$requesturl.'">Request Course</a>
-		</div>');
-}
+echo $OUTPUT->header(); //output header
+// Get the course table.
+$table->set_sql('*', "{block_ps_selfstudy_course}", '1');
+$table->define_baseurl("$CFG->wwwroot/blocks/ps_availablecourses/allcourses.php");
+$table->out(10, true); //print table
 echo $OUTPUT->footer();
 
 
 
-// form didn't validate or this is the first display
+
