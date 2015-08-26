@@ -8,6 +8,11 @@ require "$CFG->libdir/tablelib.php";
 require "allcourses_table.php";
 global $OUTPUT, $PAGE;
 
+require_login();
+if (isguestuser()) {
+    print_error('guestsarenotallowed');
+}
+
 $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/blocks/ps_selfstudy/allcourses.php');
