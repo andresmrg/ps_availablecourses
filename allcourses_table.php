@@ -74,7 +74,7 @@ class allcourses_table extends table_sql {
         if($values->course_type == 0) {
             $requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/requestcourse.php?id=".$values->id;
         } else {
-            $requesturl = "#";
+            $requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/success.php?id=".$values->id;;
         }
 
         return '<a href="'.$requesturl.'">Request course</a>';
