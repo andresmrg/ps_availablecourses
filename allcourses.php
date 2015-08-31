@@ -28,7 +28,7 @@ echo $OUTPUT->header(); //output header
 // Get the course table.
 $table->set_sql('*', "{block_ps_selfstudy_course}", '1');
 $table->define_baseurl("$CFG->wwwroot/blocks/ps_availablecourses/allcourses.php");
-$table->out(10, true); //print table
+$table->out(30, true); //print table
 echo $OUTPUT->footer();
 
 
