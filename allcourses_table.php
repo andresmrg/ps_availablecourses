@@ -17,7 +17,7 @@ class allcourses_table extends table_sql {
     function __construct($uniqueid) {
         parent::__construct($uniqueid);
         // Define the list of columns to show.
-        $columns = array('course_code','course_platform','course_name','course_description','course_hours','actions');
+        $columns = array('course_code','course_platform','course_name','course_description','course_hours','course_type','actions');
         $this->sortable(true,'course_code', SORT_ASC);
         $this->collapsible(false);
         $this->no_sorting('actions');
@@ -25,7 +25,7 @@ class allcourses_table extends table_sql {
         $this->define_columns($columns);
         
         // Define the titles of columns to show in header.
-        $headers = array('Course Code','Course Platform','Course Name', 'Description','Hours','Action');
+        $headers = array('Course Code','Course Platform','Course Name', 'Description','Hours','Course Type','Action');
         $this->define_headers($headers);
     }
 
