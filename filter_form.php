@@ -16,8 +16,7 @@ class filter_form extends moodleform {
         $buttonarray[] =& $mform->createElement('submit', 'submit_button', get_string('submitbutton','block_ps_selfstudy'));
         $buttonarray[] =& $mform->createElement('cancel', 'cancel_button', get_string('resetbutton','block_ps_selfstudy'));
         $mform->addGroup($buttonarray, 'buttonarray', '', '', false);
-        //$mform->addElement('submit', 'save', get_string('submitbutton','block_ps_selfstudy')); 
-        //$mform->addElement('reset', 'reset_button', get_string('resetbutton','block_ps_selfstudy'));        
+      
     }
 
 }
