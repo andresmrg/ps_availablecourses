@@ -38,10 +38,10 @@ class allcourses_table extends table_sql {
      *     when downloading.
      */
     function col_course_code($values) {
-        // If the data is being downloaded than we don't want to show HTML.
+        
         global $DB;
         $desc_link = $DB->get_record('block_ps_selfstudy_course',array('id'=>$values->id), $fields='description_link');
-        
+    
         if(!empty($desc_link) && $desc_link->description_link !== NULL && $desc_link->description_link !== "") {
             return '<a href="'.$desc_link->description_link.'" target="_blank">'.$values->course_code.'</a>';
         } else {
