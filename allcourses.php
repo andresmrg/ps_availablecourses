@@ -11,7 +11,7 @@ global $OUTPUT, $PAGE;
 
 require_login();
 if (isguestuser()) {
-    print_error('guestsarenotallowed');
+	print_error('guestsarenotallowed');
 }
 
 $context = context_system::instance();
@@ -28,7 +28,7 @@ $PAGE->set_heading('Available courses');
 if($filterform->is_cancelled()) {
 
 	$courseurl = new moodle_url('/blocks/ps_availablecourses/allcourses.php');
-  	redirect($courseurl);
+	redirect($courseurl);
 
 } else if ($fromform = $filterform->get_data()) {
 
