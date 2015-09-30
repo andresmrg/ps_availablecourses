@@ -48,7 +48,7 @@ class allcourses_table extends table_sql {
         }
     
         if(!empty($desc_link) && $desc_link->description_link !== NULL && $desc_link->description_link !== "") {
-            return '<a href="'.$url.'" target="_blank">'.$values->course_code.'</a>';
+            return '<a href="'.$url.'" target="_blank" style="text-decoration:underline;">'.$values->course_code.'</a>';
         } else {
             return $values->course_code;
         }
