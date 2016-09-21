@@ -39,15 +39,15 @@ class filter_form extends moodleform {
         foreach ($platformlist as $value) {
             $platform[$value->course_platform] = $value->course_platform;
         }
-        $mform->addElement('select', 'platform', "Filter by Platform", $platform);
+        $mform->addElement('select', 'platform', get_string('filterbyplatform', 'block_ps_availablecourses'), $platform);
 
         // Add course name.
-        $mform->addElement('text', 'filter_code', get_string('field_filtercode', 'block_ps_selfstudy'));
+        $mform->addElement('text', 'filter_code', get_string('field_filtercode', 'block_ps_availablecourses'));
         $mform->setType('filter_code', PARAM_NOTAGS);
 
         $buttonarray = array();
-        $buttonarray[] =& $mform->createElement('submit', 'submit_button', get_string('submitbutton', 'block_ps_selfstudy'));
-        $buttonarray[] =& $mform->createElement('cancel', 'cancel_button', get_string('resetbutton', 'block_ps_selfstudy'));
+        $buttonarray[] =& $mform->createElement('submit', 'submit_button', get_string('submitbutton', 'block_ps_availablecourses'));
+        $buttonarray[] =& $mform->createElement('cancel', 'cancel_button', get_string('resetbutton', 'block_ps_availablecourses'));
         $mform->addGroup($buttonarray, 'buttonarray', '', '', false);
 
     }

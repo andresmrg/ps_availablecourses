@@ -16,7 +16,7 @@
 
 /**
  * Define the table, headers and columns to display list of courses.
- * @package     block_ps_selfstudy
+ * @package     block_ps_availablecourses
  * @copyright   2015 Andres Ramos
  */
 
@@ -59,7 +59,7 @@ class allcourses_table extends table_sql {
         }
 
         if (!empty($descriptionlink)) {
-            return '<a href="'.$url.'" target="_blank" style="text-decoration:underline;">'.$values->course_code.'</a>';
+            return '<a href="'.$url.'" target="_blank" style="text-decoration:underline;">' . $values->course_code . '</a>';
         } else {
             return $values->course_code;
         }
@@ -71,8 +71,8 @@ class allcourses_table extends table_sql {
      * @return string HTML content to go inside the td.
      */
     public function col_course_name($values) {
-        $value = $values->course_name;
-        return '<p style="width: 100%; height: 60px; margin: 0; padding: 0; overflow: auto;">'.$value.'</p>';
+        $coursename = $values->course_name;
+        return '<p style="width: 100%; height: 60px; margin: 0; padding: 0; overflow: auto;">' . $coursename . '</p>';
     }
 
     /**
@@ -81,8 +81,8 @@ class allcourses_table extends table_sql {
      * @return string HTML content to go inside the td.
      */
     public function col_course_description($values) {
-        $value = $values->course_description;
-        return '<p style="width: 100%; height: 60px; margin: 0; padding: 0; overflow: auto;">'.$value.'</p>';
+        $description = $values->course_description;
+        return '<p style="width: 100%; height: 60px; margin: 0; padding: 0; overflow: auto;">' . $description . '</p>';
     }
 
     /**
@@ -94,10 +94,12 @@ class allcourses_table extends table_sql {
 
         // If the value is 0, show Phisical copy, else, Link course.
         if ($values->course_type == 0) {
-            return "Physical Copy";
+            $str = get_string('physicalcopy', 'block_ps_availablecourses');
         } else {
-            return "Link Course";
+            $str = get_string('linkcourse', 'block_ps_availablecourses');
         }
+
+        return $str;
     }
 
     /**
@@ -108,9 +110,9 @@ class allcourses_table extends table_sql {
     public function col_course_status($values) {
         // If the value is 0, show Active copy, else, Disable.
         if ($values->course_status == 0) {
-            return "Active";
+            return get_string('active', 'block_ps_availablecourses');
         } else {
-            return "Disable";
+            return get_string('disable', 'block_ps_availablecourses');
         }
     }
 
@@ -132,13 +134,16 @@ class allcourses_table extends table_sql {
      */
     public function col_actions($values) {
         global $DB, $CFG;
+
         // Show readable date from timestamp.
         if ($values->course_type == 0) {
             $requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/requestcourse.php?id=".$values->id;
+            $returnurl = '<a href="' . $requesturl . '">' . get_string('requestcourse', 'block_ps_availablecourses') . '</a>';
         } else {
-            $requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/action.php?action=go&courseid=".$values->id;;
+            $requesturl = $CFG->wwwroot."/blocks/ps_selfstudy/action.php?action=go&courseid=".$values->id;
+            $returnurl = '<a href="' . $requesturl . '" target="_blank">' . get_string('requestcourse', 'block_ps_availablecourses') . '</a>';
         }
 
-        return '<a href="'.$requesturl.'">Request course</a>';
+        return $returnurl;
     }
 }
